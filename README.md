@@ -1,2 +1,2 @@
-# config
-config files
+# Personal config files for Ubuntu
+Just my config files
