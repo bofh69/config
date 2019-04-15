@@ -99,6 +99,13 @@ fi
 
 stty start undef stop undef
 
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
+export EDITOR=vim
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/bofh/.sdkman"
 [[ -s "/home/bofh/.sdkman/bin/sdkman-init.sh" ]] && source "/home/bofh/.sdkman/bin/sdkman-init.sh"
