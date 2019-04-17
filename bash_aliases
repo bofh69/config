@@ -11,9 +11,11 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+if which lsd > /dev/null; then
+    alias ll='lsd -alF --date relative'
+    alias la='lsd -a'
+    alias l='lsd -F'
+fi
 
 alias m="make LIBDIR=../../build/libmira"
 
@@ -46,13 +48,17 @@ function reload_aliases()
 
 function gg()
 {
-    git grep "$*"
+    if which rg >/dev/null; then
+        rg -p "$*" | less -FRX
+    else
+        git grep "$*"
+    fi
 }
 
 function gga()
 {
     pushd $(git rev-parse --show-toplevel 2>/dev/null || echo ~/src/mira) > /dev/null
-    git grep $*
+    gg $*
     popd >/dev/null
 }
 
@@ -89,3 +95,12 @@ function _gvi()
     popd > /dev/null
 }
 complete -o nospace -o dirnames -o filenames -F _gvi gvi
+
+function fd()
+{
+  if [ -t 1 ]; then
+    env fd -c always $* | less -XRF
+  else
+    env fd $*
+  fi
+}
