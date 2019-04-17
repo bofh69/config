@@ -106,6 +106,8 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 export EDITOR=vim
 
+[ -e $HOME/.cargo/env ] && . $HOME/.cargo/env
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/bofh/.sdkman"
 [[ -s "/home/bofh/.sdkman/bin/sdkman-init.sh" ]] && source "/home/bofh/.sdkman/bin/sdkman-init.sh"
