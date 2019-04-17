@@ -12,7 +12,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 if which lsd > /dev/null; then
-    alias ll='lsd -alF --date relative'
+    alias ll='lsd -alF --date=relative'
     alias la='lsd -a'
     alias l='lsd -F'
 fi
