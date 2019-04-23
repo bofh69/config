@@ -107,6 +107,8 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export EDITOR=vim
 
 [ -e $HOME/.cargo/env ] && . $HOME/.cargo/env
+[ -e $HOME/.cargo/env ] && source $(rustc --print sysroot)/etc/bash_completion.d/cargo
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/bofh/.sdkman"
