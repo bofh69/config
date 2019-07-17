@@ -18,8 +18,8 @@
     enable_guicolors = true
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_inactive_separator = "arrow"
+    statusline_separator = "fire"
+    statusline_inactive_separator = "fire"
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
@@ -41,7 +41,10 @@ default_height = 30
 name = 'lang#extra'
 
 [[layers]]
-name = 'lang#c'
+  name = 'lang#c'
+  clang_executable = "/usr/bin/clang-7"
+  [layer.clang_std]
+   c = "c11"
 
 [[layers]]
 name = 'lang#markdown'
