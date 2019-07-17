@@ -104,3 +104,28 @@ function fd()
     env fd $*
   fi
 }
+
+function connect_openocd_nrf()
+{
+    openocd -f interface/jlink.cfg -c "transport select swd" -f target/nrf52.cfg
+}
+
+# cd activates virtualenv if is exists
+function cd() {
+   builtin cd "$@"
+
+   if [ $(dirname "$VIRTUAL_ENV") == $(pwd) ] ; then
+        # Already at the active virtual env
+        return
+   fi
+
+   if [[ -d ./venv ]] ; then
+        if type deactivate > /dev/null 2>&1 ; then
+           printf "Deactivating virtualenv %s\n" "$VIRTUAL_ENV"
+            deactivate
+        fi
+
+        source ./venv/bin/activate
+        printf "Setting up   virtualenv %s\n" "$VIRTUAL_ENV"
+   fi
+}
