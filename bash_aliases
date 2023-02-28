@@ -17,14 +17,22 @@ if which lsd > /dev/null; then
     alias l='lsd -F'
 fi
 
-alias m="make LIBDIR=../../build/libmira"
+if which JLinkGDBServer > /dev/null; then
+  alias gdbserver_mkw41z='JLinkGDBServer -device MKW41Z512xxx4 -endian little -if SWD -speed 4000'
+  alias gdbserver_nrf52832='JLinkGDBServer -device nRF52832_xxAA -endian little -if SWD -speed 4000'
+  alias gdbserver_nrf52833='JLinkGDBServer -device nRF52833_xxAA -endian little -if SWD -speed 4000'
+  alias gdbserver_nrf52840='JLinkGDBServer -device nRF52840_xxAA -endian little -if SWD -speed 4000'
+fi
+
+alias m='make LIBDIR="$(git rev-parse --show-toplevel 2>/dev/null)/build/libmira"'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 alias gc="git commit"
-alias rebase="git fetch origin develop; git rebase -i FETCH_HEAD"
+alias gpull="git-disable-filter; git pull; git-enable-filter"
+alias rebase="git-disable-filter; git fetch origin develop; git rebase -i FETCH_HEAD; git-enable-filter"
 
 function gcd()
 {
@@ -49,7 +57,7 @@ function reload_aliases()
 function gg()
 {
     if which rg >/dev/null; then
-        rg -p "$*" | less -FRX
+        rg -p $* | less -FRX
     else
         git grep "$*"
     fi
